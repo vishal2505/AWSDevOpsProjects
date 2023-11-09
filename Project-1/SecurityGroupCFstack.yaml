@@ -1,0 +1,16 @@
+Parameters:
+  VPCId:
+    Description: Default VPC that SG is deployed into
+    Type: AWS::EC2::VPC::Id
+  
+Resources:
+  SSHSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: SSH Only Ingress Security Group
+      SecurityGroupIngress:
+        - CidrIp: "10.0.0.0/20"
+          FromPort: 22
+          ToPort: 22
+          IpProtocol: tcp
+      VpcId: !Ref VPCId

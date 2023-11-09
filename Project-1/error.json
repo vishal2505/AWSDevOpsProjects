@@ -1,0 +1,48 @@
+Test Event Name
+Mytest
+
+Response
+{
+  "errorMessage": "An error occurred (AccessDenied) when calling the DetectStackDrift operation: User: arn:aws:sts::503382476502:assumed-role/DetectDrfitFunction-role-evsmx98r/DetectDrfitFunction is not authorized to perform: cloudformation:DetectStackResourceDrift on resource: arn:aws:cloudformation:us-east-1:503382476502:stack/SecurityGroupCFStack/1db63cc0-7eca-11ee-8cb6-12d1774c641b because no identity-based policy allows the cloudformation:DetectStackResourceDrift action",
+  "errorType": "ClientError",
+  "requestId": "53f3b006-3fdf-45d9-ba51-96cbfa18f093",
+  "stackTrace": [
+    "  File \"/var/task/lambda_function.py\", line 41, in lambda_handler\n    stack_drift_detection = CF_CLIENT.detect_stack_drift( StackName=STACK_NAME )\n",
+    "  File \"/var/runtime/botocore/client.py\", line 530, in _api_call\n    return self._make_api_call(operation_name, kwargs)\n",
+    "  File \"/var/runtime/botocore/client.py\", line 960, in _make_api_call\n    raise error_class(parsed_response, operation_name)\n"
+  ]
+}
+
+Test Event Name
+Mytest
+
+Response
+{
+  "errorMessage": "An error occurred (UnauthorizedOperation) when calling the DescribeSecurityGroupRules operation: You are not authorized to perform this operation. User: arn:aws:sts::503382476502:assumed-role/DetectDrfitFunction-role-evsmx98r/DetectDrfitFunction is not authorized to perform: ec2:DescribeSecurityGroupRules because no identity-based policy allows the ec2:DescribeSecurityGroupRules action",
+  "errorType": "ClientError",
+  "requestId": "650f2c71-8ca4-4272-8def-7b53b5dc17b3",
+  "stackTrace": [
+    "  File \"/var/task/lambda_function.py\", line 77, in lambda_handler\n    restore_ssh_security_group(resource_id, expected_properties)\n",
+    "  File \"/var/task/lambda_function.py\", line 13, in restore_ssh_security_group\n    rules = EC2_CLIENT.describe_security_group_rules(Filters=[{'Name': 'group-id', 'Values': [resource_id]}])\n",
+    "  File \"/var/runtime/botocore/client.py\", line 530, in _api_call\n    return self._make_api_call(operation_name, kwargs)\n",
+    "  File \"/var/runtime/botocore/client.py\", line 960, in _make_api_call\n    raise error_class(parsed_response, operation_name)\n"
+  ]
+}
+
+Test Event Name
+Mytest
+
+Response
+{
+  "errorMessage": "An error occurred (UnauthorizedOperation) when calling the AuthorizeSecurityGroupIngress operation: You are not authorized to perform this operation. User: arn:aws:sts::503382476502:assumed-role/DetectDrfitFunction-role-evsmx98r/DetectDrfitFunction is not authorized to perform: ec2:AuthorizeSecurityGroupIngress on resource: arn:aws:ec2:us-east-1:503382476502:security-group/sg-06925a8d4560ed77e because no identity-based policy allows the ec2:AuthorizeSecurityGroupIngress action. Encoded authorization failure message: 4l6DlKSlXm2aZJy8Z084pOfwdiT1XkREjCePPvkujVdGKSabslM1UpgIWEqe9grmKPAlCbwaMyKk60M1JwEn2fgX0WAeQkZgJH2BshGeHlvKee0LzVdfWNaqe64b0BZedCHgJxchdCJuVyGg5SRFWbfgE_fTAoN1dTctB0sfBNY1_KJ2F7ekNgzJCFxabNFaMVYl2Ar3b-GVZ6ONV58-UawJoJZLfMNCf5BVPC3YrhC_gSIlKkbwm8lMKmRsBeggOuwmNnzFIe2O8qfmf3bOOSvU2va5aSYwElsHJDJh-cmJhjWIqtJgW_vqWTqEXhaAyIwVBa673cQJZNowKUQVWBDBV9hp7eswgQv45_Jc-ObysCYuzuspZw75gT8DRp5PXjSxQ4kirlIySr6zXGUD6IcDespPNTP1IzNCDP6rxEXDve_5ayZF4hqesLfbaJh4l3NhqTsSgY3BmQgCMRz8ihYruV81yVMsghHT-oO70mqImj9o6ewJq70r_RBMlftVnJek1XImlY2PHPi_UNXTVRBF6Vr_LvuqD_dp-COxbjboqvGhfaO6yHCFlm5Of_N_L4HXJ6DnfpPPiCVZ4OirwX9J7f5b3j4FeKttO0LwrK06_ZrMee_bfu5Bt0F5Kb9Fjzqb1Xy_7cf4id-aunlK5mycjV-j4Gn1_SQrcv-D36kktYF8YfYiG_0fF3Kl_xdQYP3hrmOKAYOIh1UM9QFix7UKoCFpxv-6CMNa6CRePAZLFrXlvJEcBTv2D8B1r7Qd1CTYrUp9TOzUQoOz8OKTMig",
+  "errorType": "ClientError",
+  "requestId": "550a4429-fa81-4cdd-b77a-096058571467",
+  "stackTrace": [
+    "  File \"/var/task/lambda_function.py\", line 77, in lambda_handler\n    restore_ssh_security_group(resource_id, expected_properties)\n",
+    "  File \"/var/task/lambda_function.py\", line 27, in restore_ssh_security_group\n    security_group.authorize_ingress(\n",
+    "  File \"/var/runtime/boto3/resources/factory.py\", line 580, in do_action\n    response = action(self, *args, **kwargs)\n",
+    "  File \"/var/runtime/boto3/resources/action.py\", line 88, in __call__\n    response = getattr(parent.meta.client, operation_name)(*args, **params)\n",
+    "  File \"/var/runtime/botocore/client.py\", line 530, in _api_call\n    return self._make_api_call(operation_name, kwargs)\n",
+    "  File \"/var/runtime/botocore/client.py\", line 960, in _make_api_call\n    raise error_class(parsed_response, operation_name)\n"
+  ]
+}
