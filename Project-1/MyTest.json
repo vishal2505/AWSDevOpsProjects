@@ -1,0 +1,5 @@
+{
+    "STACK_NAME": "SecurityGroupCFStack",
+    "RESOURCE_TYPE": "AWS::EC2::SecurityGroup",
+    "SECURITY_GROUP_NAME": "SSHSecurityGroup"
+}

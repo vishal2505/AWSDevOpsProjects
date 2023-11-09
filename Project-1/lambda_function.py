@@ -1,11 +1,8 @@
 import json
 import boto3
 import time
- 
-STACK_NAME = "ca-lab-demo"
-RESOURCE_TYPE = "AWS::EC2::SecurityGroup"
-SECURITY_GROUP_NAME = "SSHSecurityGroup"
- 
+
+
 CF_CLIENT = boto3.client('cloudformation')
 EC2_CLIENT = boto3.client('ec2')
  
@@ -37,6 +34,9 @@ def restore_ssh_security_group(resource_id, expected_properties):
     return
  
 def lambda_handler(event, context):
+    STACK_NAME = event['STACK_NAME']                       #"SecurityGroupCFStack"
+    RESOURCE_TYPE = event['RESOURCE_TYPE']                 #"AWS::EC2::SecurityGroup"
+    SECURITY_GROUP_NAME = event['SECURITY_GROUP_NAME']     #"SSHSecurityGroup"
     # Initiate a stack drift detection
     stack_drift_detection = CF_CLIENT.detect_stack_drift( StackName=STACK_NAME )
     stack_drift_detection_id = stack_drift_detection["StackDriftDetectionId"]
