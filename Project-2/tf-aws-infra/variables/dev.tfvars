@@ -1,0 +1,6 @@
+aws_region = "us-east-1"
+aws_account_id = ""
+src_s3_bucket = "image-processing-src-901"
+tgt_s3_bucket = "image-processing-tgt-902"
+sns_topic_name = "image-processing-topic"
+alarm_receipient = "vishal.mishra2505@gmail.com"
