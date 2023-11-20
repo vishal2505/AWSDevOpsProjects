@@ -1,16 +1,11 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "5.25.0"
-    }
-  }
+#define variables
+locals {
+  layer_zip_path    = "lambda_layer.zip"
+  layer_name        = "lambda_requirements_layer"
+  requirements_path = "${path.module}/../dependencies/requirements.txt"
+  lambda_src_dir    = "${path.module}/../src/"
+  lambda_function_zip_path = "${path.module}/lambda/lambda_function.zip"
 }
-
-provider "aws" {
-  region = var.aws_region
-}
-
 
 # Create S3 buckets - src and tgt
 resource "aws_s3_bucket" "image_bucket_src" {
@@ -67,28 +62,43 @@ resource "aws_iam_role" "lambda_role" {
   })
 }
 
+# Create S3 policy for Lambda functiion role to get and put objects to S3 bucket
+data "aws_iam_policy_document" "policy" {
+  statement {
+    effect    = "Allow"
+    actions   = ["s3:ListBucket", "s3:GetObject", "s3:PutObject", "s3:CopyObject", "s3:HeadObject",
+                    "logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents", "cloudwatch:PutMetricData"]
+    resources = ["*"]
+  }
+}
+resource "aws_iam_policy" "policy" {
+  name        = "lambda-policy"
+  policy      = data.aws_iam_policy_document.policy.json
+}
+
 # Attach the AWSLambdaBasicExecutionRole policy to the IAM role
 resource "aws_iam_role_policy_attachment" "lambda_role_policy" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  policy_arn = aws_iam_policy.policy.arn
   role       = aws_iam_role.lambda_role.name
 }
 
-# Create the Lambda function
+# Create the Lambda function using data resource
 data "archive_file" "lambda" {
-  source_dir  = "${path.module}/../src/"
-  output_path = "${path.module}/lambda/lambda_function.zip"
+  source_dir  = local.lambda_src_dir
+  output_path = local.lambda_function_zip_path
   type        = "zip"
 }
-
 resource "aws_lambda_function" "image_processing_lambda" {
-  filename      = "${path.module}/lambda/lambda_function.zip"  
-  function_name = "ImageProcessingLambda"  # Replace with your desired function name
+  filename      = local.lambda_function_zip_path 
+  function_name = var.lambda_function_name
   role          = aws_iam_role.lambda_role.arn
   handler       = "lambda_function.lambda_handler"
-  runtime       = "python3.8"
+  runtime       = var.lambda_runtime
   timeout       = 10
   memory_size   = 128
   source_code_hash = data.archive_file.lambda.output_base64sha256
+  # Use the Lambda Layer
+  layers = ["arn:aws:lambda:us-east-1:770693421928:layer:Klayers-p38-Pillow:10"]
 
   environment {
     variables = {

@@ -18,6 +18,16 @@ variable "tgt_s3_bucket" {
     type = string
 }
 
+variable "lambda_function_name" {
+    description = "Lambda Function Name"
+    type = string
+}
+
+variable "lambda_runtime" {
+    description = "Lambda runtime"
+    type = string
+}
+
 variable "sns_topic_name" {
     description = "SNS Topic Name"
     type = string

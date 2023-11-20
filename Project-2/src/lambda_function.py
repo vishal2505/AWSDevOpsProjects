@@ -44,7 +44,7 @@ def lambda_handler(event, context):
 
             resized_image.save(upload_path)
 
-        s3.upload_file(upload_path, '{}-resized'.format(TGT_BUCKET), key)
+        s3.upload_file(upload_path, '{}'.format(TGT_BUCKET), key)
         os.remove(download_path)
         os.remove(upload_path)
 

@@ -15,3 +15,23 @@ resource "aws_cloudwatch_metric_alarm" "high_execution_time_alarm" {
   ok_actions             = ["arn:aws:sns:${var.aws_region}:${var.aws_account_id}:${var.sns_topic_name}"]
   insufficient_data_actions = []
 }
+
+resource "aws_cloudwatch_metric_alarm" "lambda_error_alarm" {
+  alarm_name          = "LambdaInvocationErrorAlarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "Errors"
+  namespace           = "AWS/Lambda"
+  period              = "300" 
+  statistic           = "Sum"
+  threshold           = "1"
+
+  dimensions = {
+    FunctionName = var.lambda_function_name
+  }
+
+  alarm_actions          = ["arn:aws:sns:${var.aws_region}:${var.aws_account_id}:${var.sns_topic_name}"]
+  ok_actions             = ["arn:aws:sns:${var.aws_region}:${var.aws_account_id}:${var.sns_topic_name}"]
+  insufficient_data_actions = []
+
+}
