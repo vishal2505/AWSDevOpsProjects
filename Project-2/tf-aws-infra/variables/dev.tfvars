@@ -1,0 +1,8 @@
+aws_region = "us-east-1"
+aws_account_id = "503382476502"
+src_s3_bucket = "image-processing-src-901"
+tgt_s3_bucket = "image-processing-tgt-902"
+lambda_function_name = "ImageProcessingLambda"
+lambda_runtime = "python3.8"
+sns_topic_name = "image-processing-topic"
+alarm_receipient = "vishal.mishra2505@gmail.com"
