@@ -22,3 +22,8 @@ variable "lambda_runtime" {
     description = "Lambda runtime"
     type = string
 }
+
+variable "webapp_bucket" {
+    description = "Bucket for hosting html, css and js for the app"
+    type = string
+}
