@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Uploader</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+<script type="text/javascript" src="lib/url-template/url-template.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+<script type="text/javascript" src="apigClient.js"></script>
+</head>
+<body>
+  <div id="upload-form">
+    <h1>Cloud File Storage Service</h1>
+    <h2>Select a File to Upload</h2>
+    <label for="file-input" id="choose-btn" class="custom-file-upload">
+      <input type="file" id="file-input">
+      Choose File
+    </label>
+    <div id="file-details"></div>
+    <button id="submit-btn">Submit</button>
+    <button id="reset-btn">Reset</button>
+    <div id="upload-status"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

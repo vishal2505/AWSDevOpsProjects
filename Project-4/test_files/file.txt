@@ -1,0 +1,1 @@
+this is sjust a test file which will be uploaded to s3 bucket via api gateway endpoint
