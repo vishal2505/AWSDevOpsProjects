@@ -53,3 +53,32 @@ Content-Type: text/plain
 
 ------WebKitFormBoundaryhtY6Yp8bjHScHEno--
 ```
+
+
+#### This is a failed project. Not able to complete because of formData object passing to API Agteway call. Issue was even though call was getting successful. Files were getting uploaded with 0 bytes. Body apramter which i was passing as formData was getting lost somewhere in between making the API Gateway call. I did enable the multipart/form-data binay media types in the API Gateway settings and was passing the headers correctly.
+
+##### API was working fine from the POSTMAN but from front-end i wasn't able to make it work.
+
+I tried debugging and removed the following code from *apiGateWatClient.js* then got the below error -
+
+From - 
+```
+if (request.body === undefined || request.body === '' || request.body === null || Object.keys(request.body).length === 0) {
+```
+
+TO - 
+```
+if (request.body === undefined || request.body === '' || request.body === null) {
+```
+
+
+ERROR -
+
+```
+ getting below error utils.js:62 Uncaught TypeError: Failed to construct 'FormData': Please use the 'new' operator, this DOM object constructor cannot be called as a function. in the following statement - apigClient.bucketFilenamePut(params, formData, additionalParams)
+ ```
+
+
+![POSTMAN API](image.png)
+
+![Front-end](image-1.png)

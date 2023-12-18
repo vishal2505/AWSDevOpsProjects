@@ -95,7 +95,8 @@ apigClientFactory.newClient = function (config) {
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
-        
+
+        console.log('Just before claling req body:', bucketFilenamePutRequest.body);      
         
         return apiGatewayClient.makeRequest(bucketFilenamePutRequest, authType, additionalParams, config.apiKey);
     };

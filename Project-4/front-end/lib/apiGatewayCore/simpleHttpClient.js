@@ -69,6 +69,10 @@ apiGateway.core.simpleHttpClientFactory.newClient = function (config) {
         if (queryString != '') {
             url += '?' + queryString;
         }
+
+        console.log("Accept : " + headers['Accept']);
+        console.log("Content-Type : " + headers['Content-Type']);
+        console.log("body : " + body);
         var simpleHttpRequest = {
             method: verb,
             url: url,
