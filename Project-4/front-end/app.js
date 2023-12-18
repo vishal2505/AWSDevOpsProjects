@@ -15,9 +15,9 @@ function getFileDetails(event) {
   }
 }
 
-document.getElementById('submit-btn').addEventListener('click', uploadFile);
+document.getElementById('submit-btn').addEventListener('click', function(event) {
 
-function uploadFile(event) {
+  event.preventDefault();
 
   const fileInput = document.getElementById('file-input');
   const uploadStatus = document.getElementById('upload-status');
@@ -34,13 +34,12 @@ function uploadFile(event) {
 
   const formData = new FormData();
   formData.append('file', file);
-  // Add additional parameters based on file type
-  if (fileType === 'text') {
-    formData.append('mimeType', 'text/plain'); // Set content type for text files
-  } else if (fileType === 'image') {
-    // Set content type based on image format (e.g., image/jpeg)
-    formData.append('mimeType', file.type);
-  }
+
+  /* Extracting data from a FormData object */
+
+for (let item of formData.entries()) {
+  console.log(item[0]+ ', ' + item[1].length); 
+}
 
   const filename = `${encodeURIComponent(file.name)}`;
 
@@ -49,47 +48,48 @@ function uploadFile(event) {
 
   uploadStatus.textContent = 'File upload in progress...';
 
-  console.log(formData.entries())
 
-  var apigClient = apigClientFactory.newClient({
-    defaultContentType: 'multipart/form-data',
-    defaultAcceptType: '*/*'
-  });
+  var apigClient = apigClientFactory.newClient();
   var params = { 
     bucket: bucket,
     filename: filename,
     'Content-Type': 'multipart/form-data',
     'Accept': '*/*'
   };
-  var additionalParams = {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  };
+  var additionalParams = {};
 
   // fetch(apiUrl, {
   //   method: 'PUT',
   //   body: formData
   // })
   apigClient.bucketFilenamePut(params, formData, additionalParams)
-  .then(response => {
-    if (!response.ok) {
-      console.log(response);
-      throw new Error('Network response was not ok.');
-    }
-    return response.json();
-  })
-  .then(data => {
+  .then(function(result){
     const uploadStatus = document.getElementById('upload-status');
     uploadStatus.textContent = `File upload successful: ${file.name}`;
-    console.log('File upload successful:', data);
-  })
-  .catch(error => {
+    console.log('File upload successful:', result);
+  }).catch( function(result){
     const uploadStatus = document.getElementById('upload-status');
     uploadStatus.textContent = `There was a problem with the file upload: ${error.message}`;
-    console.error('There was a problem with the file upload:', error);
+    console.error('There was a problem with the file upload:', result);
   });
-}
+  // .then(response => {
+  //   if (!response.ok) {
+  //     console.log(response);
+  //     throw new Error('Network response was not ok.');
+  //   }
+  //   return response.json();
+  // })
+  // .then(data => {
+  //   const uploadStatus = document.getElementById('upload-status');
+  //   uploadStatus.textContent = `File upload successful: ${file.name}`;
+  //   console.log('File upload successful:', data);
+  // })
+  // .catch(error => {
+  //   const uploadStatus = document.getElementById('upload-status');
+  //   uploadStatus.textContent = `There was a problem with the file upload: ${error.message}`;
+  //   console.error('There was a problem with the file upload:', error);
+  // });
+});
 
 document.getElementById('reset-btn').addEventListener('click', function () {
   const fileDetails = document.getElementById('file-details');

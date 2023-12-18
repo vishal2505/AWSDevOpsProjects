@@ -32,11 +32,15 @@ apiGateway.core.apiGatewayClientFactory.newClient = function (simpleHttpClientCo
             request.headers['x-api-key'] = apiKey;
         }
 
-        if (request.body === undefined || request.body === '' || request.body === null || Object.keys(request.body).length === 0) {
+        console.log("Obj keys: " + Object.keys(request.body));
+        console.log("Req body in apiGatewayClient: " + request.body);
+
+        //if (request.body === undefined || request.body === '' || request.body === null || Object.keys(request.body).length === 0) {
+        if (request.body === undefined || request.body === '' || request.body === null) {
             request.body = undefined;
         }
 
-        // If the user specified any additional headers or query params that may not have been modeled
+                // If the user specified any additional headers or query params that may not have been modeled
         // merge them into the appropriate request properties
         request.headers = apiGateway.core.utils.mergeInto(request.headers, additionalParams.headers);
         request.queryParams = apiGateway.core.utils.mergeInto(request.queryParams, additionalParams.queryParams);
