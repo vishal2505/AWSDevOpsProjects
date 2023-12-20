@@ -14,9 +14,17 @@ SourceCode  : https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-
 Blog        : https://medium.com/@vishalmishra_2505/monitoring-and-logging-with-aws-cloudwatch-65c92ffe9e13
 
 
-### Project - 3: Implementing a file storage service for user content using API Gateway, Lambda, S3, and Cognito
+### Project - 3: Implementing a file storage service for user content using API Gateway, Lambda, and S3
 
 SourceCode  : https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-3
 
 Blog        : https://medium.com/@vishalmishra_2505/implementing-a-file-storage-service-for-user-content-using-api-gateway-lambda-and-s3-part-1-2c5b2d1ae67c
+
+
+### Project - 5: Web Identity Federation using Cognito with S3 Integration
+
+SourceCode  : https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-5
+
+Blog        : **WIP**
+
 
