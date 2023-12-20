@@ -1,1 +1,17 @@
 /.DS_Store
+.DS_Store
+
+# Compiled files 
+*.tfstate 
+*.tfstate.*.backup 
+*.tfstate.backup  
+
+# Module directory 
+.terraform/  
+
+*.plan
+plan/
+*.tfplan
+*.terraform.lock*
+
+terraform.*/
