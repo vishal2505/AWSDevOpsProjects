@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px; 
+}
+
+h2 {
+  color: #333; 
+  margin-top: 20px; 
+  margin-bottom: 20px; 
+}
+
+h4 {
+  color: #333; 
+  margin-top: 20px; 
+  margin-bottom: 2%; 
+}
+
+.in-container {
+  display: flex;
+}
+
+.left-div, .right-div {
+  flex: 1;
+}
+
+#logout {
+  align-items: right;
+  text-align: right;
+}
