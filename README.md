@@ -25,6 +25,6 @@ Blog        : https://medium.com/@vishalmishra_2505/implementing-a-file-storage-
 
 SourceCode  : https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-5
 
-Blog        : **WIP**
+Blog        : https://medium.com/@vishalmishra_2505/one-tap-to-your-files-simplifying-security-with-cognito-and-s3-using-web-identity-federation-e504e98a9653
 
 
