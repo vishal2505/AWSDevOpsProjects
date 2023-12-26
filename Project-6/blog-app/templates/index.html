@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mt-4">Welcome to my blog!</h2>
+
+    <section class="posts mt-4">
+        <h3>Latest Posts</h3>
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ url_for('view_post', post_id=post.post_id) }}">{{ post.title }}</a></h5>
+                        <p class="card-text">{{ post.timestamp }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

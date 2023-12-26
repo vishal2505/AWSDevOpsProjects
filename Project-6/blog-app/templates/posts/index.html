@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>All Posts</h2>
+
+    <section class="posts">
+        <ul>
+            {% for post in posts %}
+            <li>
+                <h3><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a></h3>
+                <p>{{ post.author }}</p>
+                <p>{{ post.timestamp }}</p>
+                <p>{{ post.content | truncate(200) }}</p>  </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
