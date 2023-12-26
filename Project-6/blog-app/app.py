@@ -7,10 +7,8 @@ from boto3.dynamodb.conditions import Key
 app = Flask(__name__)
 
 # Configure DynamoDB (replace with your AWS credentials and region)
-dynamodb = boto3.resource('dynamodb',
-                          aws_access_key_id='AKIAXKM7PA3LA3TVC23S',
-                          aws_secret_access_key='ZDzIvH1Qwx1pekCYtcy3+GCyeCNhqADLrMs2a50J',
-                          region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+# No need to provide acess key and secret access key instead we'll be attaching an IAM role with appropriate DynamoDB access permissions to our ECS task.
 
 # Define routes
 @app.route('/')
