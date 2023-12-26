@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - pip install -r requirements.txt
+
+  build:
+    commands:
+      - docker build -t ${ECR_REPOSITORY}:latest .
+
+  post_build:
+    commands:
+    - aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+    - docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
