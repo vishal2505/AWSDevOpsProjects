@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1>{{ post.title }}</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Written by:</strong> {{ post.author }}<br>
+                <strong>Post ID:</strong> {{ post.post_id }}<br>
+                <strong>Last Modified At:</strong> {{ post.timestamp }}
+            </p>
+            <div class="mt-3">
+                <a href="{{ url_for('edit_post', post_id=post.post_id) }}" class="btn btn-primary">Edit Post</a>
+                <a href="{{ url_for('delete_post', post_id=post.post_id, author=post.author) }}" class="btn btn-danger">Delete Post</a>
+            </div>
+            <hr>
+            <p class="card-text">{{ post.content | safe }}</p>
+        </div>
+    </div>
+{% endblock %}

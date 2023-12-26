@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Edit Post</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author:</label>
+                    <input type="text" class="form-control-plaintext" id="author" name="author" value="{{ post.author }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content:</label>
+                    <textarea class="form-control" id="content" name="content" rows="5" required>{{ post.content }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Post</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
