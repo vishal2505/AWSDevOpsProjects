@@ -32,3 +32,18 @@ variable "table_wcu" {
     description = "DynamoDB Table Write Capacity Units"
     type = number
 }
+
+variable "ecr_repo_name" {
+    description = "ECR Repository name which will consist of docker images"
+    type = string
+}
+
+variable "codebuild_project_name" {
+    description = "Codebuild Project Name"
+    type = string
+}
+
+variable "github_repo" {
+    description = "Github repo for the entire source code inbcluding buildspec.yaml"
+    type = string
+}
