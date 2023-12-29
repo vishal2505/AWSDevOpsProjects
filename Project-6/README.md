@@ -34,6 +34,9 @@ Explanation:
 
 6. Create CodeBuild Project:
 
+    *I have to create different repo for codebuild project as Codebuild project in AWS has to sources from github repostiry and root directory.*
+    *Here is the repo for CodeBuild project. BAsically it has the same code asd `blog-app` folder as in this repo.
+    [https://github.com/vishal2505/MyBlogApp]
     - In the AWS Management Console, navigate to CodeBuild and create a new project.
     - Set up source code location (GitHub repository or S3 bucket).
     - Choose a build environment image (compatible with Python and Flask).
