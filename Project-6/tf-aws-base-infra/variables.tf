@@ -47,3 +47,8 @@ variable "github_repo" {
     description = "Github repo for the entire source code inbcluding buildspec.yaml"
     type = string
 }
+
+variable "github_oauth_token" {
+    description = "OAuth token requried by the CodeBuild Project to trigger automatic build upon branch merge"
+    type = string
+}

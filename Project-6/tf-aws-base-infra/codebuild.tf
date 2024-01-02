@@ -66,4 +66,27 @@ resource "aws_codebuild_project" "codebuild_project" {
     location        = var.github_repo
     git_clone_depth = 1
   }
+
+  lifecycle {
+    ignore_changes = [
+      source_version,
+    ]
+  }  
+}
+
+resource "aws_codebuild_source_credential" "github_credentials" {
+  auth_type   = "PERSONAL_ACCESS_TOKEN"
+  server_type = "GITHUB"
+  token       = var.github_oauth_token
+}
+
+resource "aws_codebuild_webhook" "github_webhook" {
+  project_name = aws_codebuild_project.codebuild_project.name
+
+  filter_group {
+    filter {
+      type = "EVENT"
+      pattern = "PULL_REQUEST_MERGED"
+    }
+  }
 }
