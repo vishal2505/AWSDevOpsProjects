@@ -45,9 +45,14 @@ EOF
 }
 
 # Policies for ECS Task Execution Role
-resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
+resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy_1" {
   role       = aws_iam_role.ecsTaskExecutionRole.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
+
+resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy_2" {
+  role       = aws_iam_role.ecsTaskExecutionRole.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
 }
 
 resource "aws_kms_key" "ecs_cluster_key" {
@@ -87,7 +92,7 @@ resource "aws_ecs_task_definition" "blog_task_def_blue" {
 [
   {
     "name": "blog-app-blue",
-    "image": "${data.aws_ecr_repository.blog_app_ecr_repo.repository_url}:latest",
+    "image": "${data.aws_ecr_repository.blog_app_ecr_repo.repository_url}:blue",
     "memory": 512,
     "cpu": 256,
     "essential": true,
