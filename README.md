@@ -28,3 +28,15 @@ SourceCode  : https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-
 Blog        : https://medium.com/@vishalmishra_2505/one-tap-to-your-files-simplifying-security-with-cognito-and-s3-using-web-identity-federation-e504e98a9653
 
 
+### Project - 6: Blog App Blue/Green Deployment using ECS, CodeBuild and ALB
+
+SourceCode  : https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-6
+
+              https://github.com/vishal2505/MyBlogApp/tree/main
+
+Blog        : Part - 1 : https://medium.com/towards-aws/say-goodbye-to-downtime-achieving-seamless-updates-with-blue-green-deployments-in-ecs-on-aws-abaff92a96ce
+
+              Part - 2 :
+        
+
+
