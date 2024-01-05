@@ -36,7 +36,7 @@ SourceCode  :
 
     - https://github.com/vishal2505/MyBlogApp/tree/main
 
-Blog        : P
+Blog        : 
 
     - https://medium.com/towards-aws/say-goodbye-to-downtime-achieving-seamless-updates-with-blue-green-deployments-in-ecs-on-aws-abaff92a96ce
 
