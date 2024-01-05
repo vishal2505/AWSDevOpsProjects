@@ -1,6 +1,6 @@
-## Serverless Blog with Comment System using ECS, ECR, Docker - Blue Green Deployment
+## Serverless Blog Web App using ECS, ECR, Docker - Blue Green Deployment
 
-### WIP
+### Automated Infra creation using Terraform
 
 #### Steps -
 
@@ -46,27 +46,31 @@ Explanation:
     - Build the Docker image.
     - Push the image to Amazon ECR (Elastic Container Registry).
 
-7. Create ECS Cluster and Task Definition:
+7. Create ECS Cluster and Task Definition and Service for Blue Service:
 
     - In the ECS console, create a cluster and task definition.
     - Specify container image from ECR.
     - Define CPU and memory requirements.
     - Set container port mappings.
 
-8. Deploy to ECS:
+8. Create ALB, target group and http listener which forward traffice to the Blue Service
 
     - Use CodeBuild to trigger automatic deployments whenever code changes or manually trigger a build.
     - CodeBuild will build the image, push it to ECR, and update the task definition in ECS.
 
-9. Blue-Green Deployment:
+9. Test the application via load balancer URL.
 
-Create two ECS services: Green (current version) and Blue (new version).
-Route traffic to the Green service.
-Update the task definition in the Blue service with the new image.
-Deploy the Blue service with a new task definition revision.
-Perform health checks on the Blue service.
-If successful, gradually shift traffic from Green to Blue using weighted target groups or a load balancer.
-Once all traffic is on Blue, terminate the Green service.
+10. MAke change in the web app code and commit the changes.
 
-#### Ref Docs -
+11. Enable Automatic Code build trigger to build the image upon code merge. Tag this image as new "Green" image. Image will be pushed to ECR.
+
+12. Create another ECS task and service which is gonna pull the "Green" image from ECR.
+
+13. Create new ALB Target group for the ECS Green Service and update listener rule for 50-50%.
+
+14. Gradually shift traffic from Blue to Green using weighted target groups.
+        
+15. Once all traffic is on Green, terminate the Blue service.
+
+
 
