@@ -39,12 +39,41 @@ resource "aws_lb_target_group" "blog_app_lb_tg" {
   }
 }
 
+resource "aws_lb_target_group" "blog_app_lb_tg_green" {
+  name        = "blog-app-lb-tg-green"
+  port        = 80
+  protocol    = "HTTP"
+  target_type = "ip"
+  vpc_id      = aws_default_vpc.default_vpc.id # Referencing the default VPC
+  health_check {
+    matcher = "200,301,302"
+    path = "/"
+  }
+}
+
 resource "aws_lb_listener" "blog_app_lb_listener" {
   load_balancer_arn = aws_alb.blog_app_lb.arn # Referencing our load balancer
   port              = "80"
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.blog_app_lb_tg.arn # Referencing our tagrte group
+    #target_group_arn = aws_lb_target_group.blog_app_lb_tg.arn # Referencing our tagrte group
+    forward {
+      target_group {
+        arn    = aws_lb_target_group.blog_app_lb_tg.arn
+        weight = 50
+      }
+
+      target_group {
+        arn    = aws_lb_target_group.blog_app_lb_tg_green.arn
+        weight = 50
+      }
+
+      stickiness {
+        enabled  = false
+        duration = 600
+      }
+    }
   }
+  
 }

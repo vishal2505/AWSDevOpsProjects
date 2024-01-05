@@ -153,3 +153,62 @@ resource "aws_security_group" "ecs_service_sg" {
     cidr_blocks = ["0.0.0.0/0"] # Allowing traffic out to all IP addresses
   }
 }
+
+# Adding configurations for the Green Service -
+
+resource "aws_ecs_task_definition" "blog_task_def_green" {
+  family                   = "blog-app-green"
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
+  task_role_arn            = aws_iam_role.ecsTaskExecutionRole.arn
+  memory                   = 512
+  cpu                      = 256
+  container_definitions    = <<EOF
+[
+  {
+    "name": "blog-app-green",
+    "image": "${data.aws_ecr_repository.blog_app_ecr_repo.repository_url}:green",
+    "memory": 512,
+    "cpu": 256,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 5000,
+        "hostPort": 5000
+      }
+    ],
+    "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "${aws_cloudwatch_log_group.ecs_log_group.name}",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "awslogs-blogapp"
+                }
+            }
+  }
+]
+EOF
+}
+
+resource "aws_ecs_service" "blog_service_green" {
+  name            = "blog-app-green"
+  cluster         = aws_ecs_cluster.blog_ecs_cluster.id
+  task_definition = aws_ecs_task_definition.blog_task_def_green.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets          = [aws_default_subnet.default_subnet_a.id, aws_default_subnet.default_subnet_b.id, aws_default_subnet.default_subnet_c.id]
+    assign_public_ip = true                                               # Providing our containers with public IPs
+    security_groups  = [aws_security_group.ecs_service_sg.id]             # Setting the security group
+  }
+
+
+   load_balancer {
+    target_group_arn = aws_lb_target_group.blog_app_lb_tg_green.arn             # Referencing our target group
+    container_name   = aws_ecs_task_definition.blog_task_def_green.family
+    container_port   = 5000                                               # Specifying the container port
+  }
+}
