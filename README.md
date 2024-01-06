@@ -30,17 +30,17 @@ Blog        : https://medium.com/@vishalmishra_2505/one-tap-to-your-files-simpli
 
 ### Project - 6: Blog App Blue/Green Deployment using ECS, CodeBuild and ALB
 
-SourceCode  : 
+SourceCode  :
 
-    - https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-6
+https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-6
+                
+https://github.com/vishal2505/MyBlogApp/tree/main
 
-    - https://github.com/vishal2505/MyBlogApp/tree/main
+Blog        :   
 
-Blog        : 
-
-    - https://medium.com/towards-aws/say-goodbye-to-downtime-achieving-seamless-updates-with-blue-green-deployments-in-ecs-on-aws-abaff92a96ce
-
-    - TBD
+https://towardsaws.com/say-goodbye-to-downtime-achieving-seamless-updates-with-blue-green-deployments-in-ecs-on-aws-abaff92a96ce
+                
+https://towardsaws.com/say-goodbye-to-downtime-achieving-seamless-updates-with-blue-green-deployments-in-ecs-on-aws-30e6af5c0b2c
         
 
 
