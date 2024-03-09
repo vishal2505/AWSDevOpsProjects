@@ -8,16 +8,6 @@ variable "aws_account_id" {
     type = string
 }
 
-variable "backend_jenkins_bucket" {
-    description = "S3 bucket where jenkins terraform state file will be stored"
-    type = string
-}
-
-variable "backend_jenkins_bucket_key" {
-    description = "bucket key for the jenkins terraform state file"
-    type = string
-}
-
 variable "vpc_name" {
   description = "VPC Name for Jenkins Server VPC"
   type        = string
