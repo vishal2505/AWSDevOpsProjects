@@ -5,22 +5,19 @@
 
 2. Create Jenkins Server on EC2 using tools - Jenkins, git, Terraform and Kubectl
 
-3. 
+3. Configure Jenkins Server
 
-### Errors -
+4. Create Terraform configuration files for EKS Cluster in private VPC
 
-```
-tf-aws-ec2  $  terraform init
+5. Add stages in the Jenkins pipeline for terraform init, plan and apply for EKS cluster
 
-Initializing the backend...
-Initializing modules...
-╷
-│ Error: Failed to get existing workspaces: S3 bucket does not exist.
-│ 
-│ The referenced S3 bucket must have been previously created. If the S3 bucket
-│ was created within the last minute, please wait for a minute or two and try
-│ again.
-│ 
-│ Error: NoSuchBucket: The specified bucket does not exist
-│       status code: 404, request id: FR6YJRYDT6VECCQS, host id: 1bQdGEjfEcGerIFQJo0myOx4MDObCTPzFr4vUEBFDMtmKL686fKlky5KxA5wBv2gGiZsRKkyjwk=
-```
+6. Creaye Manigest files - Deployment.yaml and Service.yaml for a simple NGinx application
+
+7. Add another stage in the jenkins pipeline to apply these manifest files
+
+8. Run the pipeline
+
+Below is the repo which is going to be used in the Jenkins pipeline during `SCM checkout`.
+
+https://github.com/vishal2505/terraform-eks-cicd/tree/main
+

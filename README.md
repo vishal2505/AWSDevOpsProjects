@@ -43,4 +43,16 @@ https://towardsaws.com/say-goodbye-to-downtime-achieving-seamless-updates-with-b
 https://towardsaws.com/say-goodbye-to-downtime-achieving-seamless-updates-with-blue-green-deployments-in-ecs-on-aws-30e6af5c0b2c
         
 
+### Project - 7: Deploying EKS Cluster and Nginx application via CICD (Jenkins) Pipeline
+
+SourceCode:
+
+https://github.com/vishal2505/AWSDevOpsProjects/tree/main/Project-7
+
+https://github.com/vishal2505/terraform-eks-cicd/tree/main
+
+Blog:
+
+https://medium.com/@vishalmishra_2505/from-scratch-to-production-deploying-eks-clusters-and-applications-with-ci-cd-using-jenkins-and-f27d4686d5fe
+
 
